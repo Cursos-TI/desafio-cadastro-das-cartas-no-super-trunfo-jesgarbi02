@@ -3,21 +3,29 @@
     int main() {
         
       char estado[10], cidade[20];
-      int populacao, carta, turismo;
+      int carta, turismo;
+      unsigned int populacao;
       float area, pib;
       float percapita, densidade;
 
-//inclusão: nível aventureiro
+    //INCLUSÃO | Nível Aventureiro
       float dp, ppc;
-
+    //INCLUSÃO | Nível Mestre
+      float superpoderA;
       char estado2[10], cidade2[20];
-      int populacao2, carta2, turismo2;
+      int carta2, turismo2;
+      unsigned int populacao2;
       float area2, pib2;
 
-//inclusão: nível aventureiro
-      float DP, PPC;     
+    //INCLUSÃO | Nível Aventureiro
+      float DP, PPC; 
+    //INCLUSÃO | Nível Mestre
+      float superpoderB;
+      unsigned int populacaoWIN;
+      float areaWIN, pibWIN, dpWIN, ppcWIN, superWIN;
+      int turismoWIN;
 
-// CARTA N1
+// ESCOLHA: CARTA N1
 
       printf("Carta 1\n");
 
@@ -42,13 +50,13 @@
         printf("Quantos pontos turisticos tem na cidade?: ");
         scanf("%d", &turismo);
 
-//inclusão: nível aventureiro
+    //INCLUSÃO | Nível Aventureiro
 
-        dp = (float)(pib / populacao);
+        dp = (float)populacao / area;
 
-        ppc = (float)(populacao / pib);
+        ppc = (float)pib / populacao;
 
-//CARTA N2
+//ESCOLHA CARTA N2
 
       printf("\nCarta 2\n");
 
@@ -73,11 +81,11 @@
         printf("Quantos pontos turisticos tem na cidade?: ");
         scanf("%d", &turismo2);
 
-//inclusão: nível aventureiro
+    //INCLUSÃO: | Nível Aventureiro
 
-        DP = (float)(pib2 / populacao2);
+        DP = (float)populacao2 / area2;
 
-        PPC = (float)(populacao2 / pib2);
+        PPC = (float)pib2 / populacao2;
 
 
 //RESPOSTAS
@@ -91,9 +99,10 @@
         printf("Área: %.2f km2\n", area);
         printf("PIB: %.2f Bilhões de reais\n", pib);
         printf("Número de pontos turísticos: %d\n", turismo);
-//inclusão: nível aventureiro
-        printf("O PIB per Capita é de: %.2f\n", dp);
-        printf("A desindade populacional é: %.2f\n", ppc);
+    //INCLUSÃO | Nível Aventureiro
+        printf("A desindade populacional é: %.2f\n", dp);
+        printf("O PIB per Capita é de: %.2f\n", ppc);
+    
 
         
         printf("\nCarta 2\n");
@@ -105,9 +114,35 @@
         printf("Área: %.2f km2\n", area2);
         printf("PIB: %.2f Bilhões de reais\n", pib2);
         printf("Número de pontos turísticos: %d\n", turismo2);
-//inclusão: nível aventureiro
-        printf("O PIB per Capita é de: %.2f\n", DP);
-        printf("A desindade populacional é: %.2f\n", PPC);
+    //INCLUSÃO | Nível Aventureiro
+        printf("A desindade populacional é: %.2f\n", DP);
+        printf("O PIB per Capita é de: %.2f\n", PPC);
+      
+    // SOMA DO PODER | Nível Mestre
+
+        superpoderA = populacao + area + pib + turismo + ppc + (1 / dp);
+        superpoderB = populacao2 + area2 + pib2 + turismo2 + PPC + (1 / DP);
+
+    // CALCULO DE COMPARAÇÃO | Nível Mestre
+
+        populacaoWIN = populacao > populacao2;
+        areaWIN = area > area2;
+        pibWIN = pib > pib2;
+        turismoWIN = turismo > turismo2;
+        dpWIN = dp < DP;
+        ppcWIN = ppc > PPC;
+        superWIN = superpoderA > superpoderB;
         
+// RESULTADO COMPARAÇÃO | Nível Mestre
+
+        printf("\nCOMPARAÇÃO DE CARTAS\n");
+        printf("População: Carta %u venceu\n", populacaoWIN);
+        printf("Área: Carta %.0f venceu\n", areaWIN);
+        printf("PIB: Carta %.0f venceu\n", pibWIN);
+        printf("Pontos Turisticos: Carta %d venceu\n", turismoWIN);
+        printf("Densidade Populacional: Carta %.0f venceu\n", dpWIN);
+        printf("PIB per Capita: Carta %.0f venceu\n", ppcWIN);
+        printf("Super Poder: Carta %.0f venceu\n", superWIN);
+                    
         return 0;
 }
